@@ -18,8 +18,26 @@ public class Final extends javax.swing.JFrame {
     /**
      * Creates new form Final
      */
+    int numBuenas;
+    int numMalas;
+   
+    public void agregarDato(int a, int b) { //metodo para copiar dato de otra clase
+        this.numBuenas = a;
+        String numBuenasString = Integer.toString(numBuenas);
+        buenastxt.setText("Respuestas buenas: " + numBuenasString);
+        this.numMalas = b;
+        String numMalasString = Integer.toString(numMalas);
+        malastxt.setText("Respuestas malas: " + numMalasString);
+    }
+    
     public Final() {
         initComponents();
+        initStyles();
+    }
+    
+    private void initStyles() {
+        felicidadestxt.putClientProperty( "FlatLaf.styleClass", "h1" );
+        felicidadestxt2.putClientProperty( "FlatLaf.styleClass", "h2" );
     }
     
     public void close() {
@@ -38,7 +56,10 @@ public class Final extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         regresar = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        felicidadestxt = new javax.swing.JLabel();
+        felicidadestxt2 = new javax.swing.JLabel();
+        buenastxt = new javax.swing.JLabel();
+        malastxt = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -51,27 +72,48 @@ public class Final extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Felicidades");
+        felicidadestxt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        felicidadestxt.setText("¡Felicidades! Has demostrado un conocimiento impresionante.");
+        felicidadestxt.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        felicidadestxt2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        felicidadestxt2.setText("Has superado el desafío de la trivia con gran éxito. Sigue así y continúa desafiándote a ti mismo.");
+        felicidadestxt2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        buenastxt.setText("Buenas:");
+
+        malastxt.setText("Malas:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(felicidadestxt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(felicidadestxt2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(893, Short.MAX_VALUE)
-                .addComponent(regresar)
-                .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(274, 274, 274)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(399, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(regresar)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(malastxt, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(buenastxt, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(381, 381, 381))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(66, 66, 66)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 404, Short.MAX_VALUE)
+                .addGap(92, 92, 92)
+                .addComponent(felicidadestxt)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(felicidadestxt2)
+                .addGap(55, 55, 55)
+                .addComponent(buenastxt, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(malastxt, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 203, Short.MAX_VALUE)
                 .addComponent(regresar)
                 .addContainerGap())
         );
@@ -112,8 +154,11 @@ public class Final extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel buenastxt;
+    private javax.swing.JLabel felicidadestxt;
+    private javax.swing.JLabel felicidadestxt2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel malastxt;
     private javax.swing.JButton regresar;
     // End of variables declaration//GEN-END:variables
 }

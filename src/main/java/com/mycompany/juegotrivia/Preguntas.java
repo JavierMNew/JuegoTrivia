@@ -102,6 +102,9 @@ public class Preguntas extends javax.swing.JFrame {
         txt_pregunta = new javax.swing.JLabel();
         verbo = new javax.swing.JLabel();
         numPregunta = new javax.swing.JLabel();
+        contador = new javax.swing.JLabel();
+        malas = new javax.swing.JLabel();
+        buenas = new javax.swing.JLabel();
         respuesta1 = new javax.swing.JButton();
         respuesta2 = new javax.swing.JButton();
         respuesta3 = new javax.swing.JButton();
@@ -109,10 +112,7 @@ public class Preguntas extends javax.swing.JFrame {
         pista = new javax.swing.JButton();
         regresar = new javax.swing.JButton();
         iniciar = new javax.swing.JButton();
-        buenas = new javax.swing.JLabel();
-        contador = new javax.swing.JLabel();
         sigPregunta = new javax.swing.JButton();
-        malas = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -125,6 +125,12 @@ public class Preguntas extends javax.swing.JFrame {
         verbo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         numPregunta.setText("Numero de pregunta");
+
+        contador.setText("20");
+
+        malas.setText("❌ - ");
+
+        buenas.setText("✅ - ");
 
         respuesta1.setText("Respuesta 1");
         respuesta1.addActionListener(new java.awt.event.ActionListener() {
@@ -184,18 +190,12 @@ public class Preguntas extends javax.swing.JFrame {
             }
         });
 
-        buenas.setText("✅ - ");
-
-        contador.setText("20");
-
         sigPregunta.setText("Siguiente pregunta");
         sigPregunta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sigPreguntaActionPerformed(evt);
             }
         });
-
-        malas.setText("❌ - ");
 
         javax.swing.GroupLayout background_PreguntasLayout = new javax.swing.GroupLayout(background_Preguntas);
         background_Preguntas.setLayout(background_PreguntasLayout);
@@ -213,7 +213,7 @@ public class Preguntas extends javax.swing.JFrame {
                             .addComponent(respuesta1))
                         .addGroup(background_PreguntasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(background_PreguntasLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(267, 267, 267)
                                 .addGroup(background_PreguntasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, background_PreguntasLayout.createSequentialGroup()
                                         .addComponent(numPregunta)
@@ -230,7 +230,11 @@ public class Preguntas extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(respuesta4))))
                     .addComponent(txt_pregunta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(90, 90, 90))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(background_PreguntasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(buenas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(malas, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, background_PreguntasLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(background_PreguntasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -239,11 +243,7 @@ public class Preguntas extends javax.swing.JFrame {
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, background_PreguntasLayout.createSequentialGroup()
                         .addComponent(iniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(144, 144, 144)
-                        .addGroup(background_PreguntasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(buenas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(malas, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE))
-                        .addGap(198, 198, 198))))
+                        .addGap(410, 410, 410))))
         );
         background_PreguntasLayout.setVerticalGroup(
             background_PreguntasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -253,16 +253,18 @@ public class Preguntas extends javax.swing.JFrame {
                 .addGap(35, 35, 35)
                 .addComponent(verbo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txt_pregunta, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(background_PreguntasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txt_pregunta, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(background_PreguntasLayout.createSequentialGroup()
+                        .addComponent(buenas)
+                        .addGap(18, 18, 18)
+                        .addComponent(malas)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(numPregunta)
                 .addGap(70, 70, 70)
                 .addGroup(background_PreguntasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(background_PreguntasLayout.createSequentialGroup()
-                        .addComponent(buenas)
-                        .addGap(18, 18, 18)
-                        .addComponent(malas)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 134, Short.MAX_VALUE)
+                        .addGap(32, 180, Short.MAX_VALUE)
                         .addGroup(background_PreguntasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(respuesta1)
                             .addComponent(respuesta2)
@@ -679,6 +681,7 @@ public class Preguntas extends javax.swing.JFrame {
             if (countStringNum.equals("11")) {
                 close();
                 Final finalJ = new Final();
+                finalJ.agregarDato(countPuntaje, countPuntajeMalas);
                 finalJ.setVisible(true);
                 timer.stop();
                 countTimer = 20;
