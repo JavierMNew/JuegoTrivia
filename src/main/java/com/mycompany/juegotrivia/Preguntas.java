@@ -334,7 +334,7 @@ public class Preguntas extends javax.swing.JFrame {
             numPregunta.setText("Pregunta " + countStringNum + " de 10");
             if (countStringNum.equals("11")) {
                 close();
-                Final finalJ = new Final();
+                FinalAprobado finalJ = new FinalAprobado();
                 finalJ.setVisible(true);
             }
 
@@ -679,10 +679,23 @@ public class Preguntas extends javax.swing.JFrame {
                 sigPregunta.setText("Ver resultados");
             }
             if (countStringNum.equals("11")) {
-                close();
-                Final finalJ = new Final();
-                finalJ.agregarDato(countPuntaje, countPuntajeMalas);
-                finalJ.setVisible(true);
+                if (countPuntaje >= 7) {
+                    close();
+                    FinalAprobado finalA = new FinalAprobado();
+                    finalA.agregarDato(countPuntaje, countPuntajeMalas);
+                    finalA.setVisible(true);
+                    timer.stop();
+                    countTimer = 20;
+                    contador.setText("" + countTimer);
+                } else {
+                    close();
+                    FinalReprobado finalR = new FinalReprobado();
+                    finalR.agregarDato(countPuntaje, countPuntajeMalas);
+                    finalR.setVisible(true);
+                    timer.stop();
+                    countTimer = 20;
+                    contador.setText("" + countTimer);
+                }
                 timer.stop();
                 countTimer = 20;
                 contador.setText("" + countTimer);

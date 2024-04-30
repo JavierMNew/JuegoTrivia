@@ -13,7 +13,7 @@ import java.awt.event.WindowEvent;
  *
  * @author javie
  */
-public class Final extends javax.swing.JFrame {
+public class FinalAprobado extends javax.swing.JFrame {
 
     /**
      * Creates new form Final
@@ -30,7 +30,7 @@ public class Final extends javax.swing.JFrame {
         malastxt.setText("Respuestas malas: " + numMalasString);
     }
     
-    public Final() {
+    public FinalAprobado() {
         initComponents();
         initStyles();
     }
@@ -148,7 +148,7 @@ public class Final extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Final().setVisible(true);
+                new FinalAprobado().setVisible(true);
             }
         });
     }
