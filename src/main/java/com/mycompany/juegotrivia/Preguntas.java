@@ -11,6 +11,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,6 +20,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
@@ -63,6 +67,8 @@ public class Preguntas extends javax.swing.JFrame {
         this.dato = dato;
         verbo.setText(dato);
     }
+    
+    
 
     public Preguntas() { //constructor creo
         initComponents();
@@ -124,7 +130,9 @@ public class Preguntas extends javax.swing.JFrame {
         verbo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         verbo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
+        numPregunta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         numPregunta.setText("Numero de pregunta");
+        numPregunta.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         contador.setText("20");
 
@@ -201,49 +209,41 @@ public class Preguntas extends javax.swing.JFrame {
         background_Preguntas.setLayout(background_PreguntasLayout);
         background_PreguntasLayout.setHorizontalGroup(
             background_PreguntasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(background_PreguntasLayout.createSequentialGroup()
-                .addGap(90, 90, 90)
-                .addGroup(background_PreguntasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(verbo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, background_PreguntasLayout.createSequentialGroup()
+                .addGroup(background_PreguntasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(background_PreguntasLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(verbo, javax.swing.GroupLayout.PREFERRED_SIZE, 840, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, background_PreguntasLayout.createSequentialGroup()
+                        .addGroup(background_PreguntasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(buenas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(malas, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, background_PreguntasLayout.createSequentialGroup()
+                        .addGap(90, 90, 90)
                         .addGroup(background_PreguntasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(pista)
                             .addComponent(respuesta1))
                         .addGroup(background_PreguntasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(background_PreguntasLayout.createSequentialGroup()
-                                .addGap(267, 267, 267)
-                                .addGroup(background_PreguntasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, background_PreguntasLayout.createSequentialGroup()
-                                        .addComponent(numPregunta)
-                                        .addGap(254, 254, 254))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, background_PreguntasLayout.createSequentialGroup()
-                                        .addComponent(sigPregunta)
-                                        .addGap(240, 240, 240)))
-                                .addComponent(regresar))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, background_PreguntasLayout.createSequentialGroup()
                                 .addGap(161, 161, 161)
                                 .addComponent(respuesta2)
                                 .addGap(145, 145, 145)
                                 .addComponent(respuesta3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(respuesta4))))
-                    .addComponent(txt_pregunta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(background_PreguntasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(buenas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(malas, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16))
+                                .addComponent(respuesta4))
+                            .addGroup(background_PreguntasLayout.createSequentialGroup()
+                                .addGap(267, 267, 267)
+                                .addGroup(background_PreguntasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(iniciar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(sigPregunta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(240, 240, 240)
+                                .addComponent(regresar)))))
+                .addGap(90, 90, 90))
+            .addComponent(txt_pregunta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(numPregunta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, background_PreguntasLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(background_PreguntasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, background_PreguntasLayout.createSequentialGroup()
-                        .addComponent(contador)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, background_PreguntasLayout.createSequentialGroup()
-                        .addComponent(iniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(410, 410, 410))))
+                .addComponent(contador)
+                .addContainerGap())
         );
         background_PreguntasLayout.setVerticalGroup(
             background_PreguntasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -253,32 +253,27 @@ public class Preguntas extends javax.swing.JFrame {
                 .addGap(35, 35, 35)
                 .addComponent(verbo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(background_PreguntasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txt_pregunta, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(background_PreguntasLayout.createSequentialGroup()
-                        .addComponent(buenas)
-                        .addGap(18, 18, 18)
-                        .addComponent(malas)))
+                .addComponent(txt_pregunta, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(numPregunta)
-                .addGap(70, 70, 70)
-                .addGroup(background_PreguntasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(background_PreguntasLayout.createSequentialGroup()
-                        .addGap(32, 180, Short.MAX_VALUE)
-                        .addGroup(background_PreguntasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(respuesta1)
-                            .addComponent(respuesta2)
-                            .addComponent(respuesta3)
-                            .addComponent(respuesta4))
-                        .addGap(103, 103, 103)
-                        .addGroup(background_PreguntasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(pista)
-                            .addComponent(regresar)
-                            .addComponent(sigPregunta))
-                        .addGap(30, 30, 30))
-                    .addGroup(background_PreguntasLayout.createSequentialGroup()
-                        .addComponent(iniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 186, Short.MAX_VALUE)
+                .addComponent(buenas)
+                .addGap(18, 18, 18)
+                .addComponent(malas)
+                .addGap(18, 18, 18)
+                .addGroup(background_PreguntasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(respuesta1)
+                    .addComponent(respuesta2)
+                    .addComponent(respuesta3)
+                    .addComponent(respuesta4))
+                .addGap(57, 57, 57)
+                .addComponent(iniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(background_PreguntasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(pista)
+                    .addComponent(regresar)
+                    .addComponent(sigPregunta))
+                .addGap(30, 30, 30))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -458,6 +453,17 @@ public class Preguntas extends javax.swing.JFrame {
             if (rs.next()) {
                 String respuesta = rs.getString("respuesta_correcta");
                 if (seleccionActual.equals(respuesta)) {
+                    try {
+                        String filepath = "C:\\mixkit-correct-answer-tone-2870.wav";
+                        AudioInputStream aui = AudioSystem.getAudioInputStream(new File(filepath).getAbsoluteFile());
+                        try {
+                            Clip clip = AudioSystem.getClip();
+                            clip.open(aui);
+                            clip.start();
+                        } catch (Exception e){ 
+                        }
+                    } catch (Exception e) { 
+                    }
                     timer.stop();
                     JOptionPane.showMessageDialog(null, "Respuesta correcta");
                     sigPregunta.setVisible(true);
@@ -469,6 +475,17 @@ public class Preguntas extends javax.swing.JFrame {
                     respuesta3.setVisible(false);
                     respuesta4.setVisible(false);
                 } else {
+                    try {
+                        String filepath = "C:\\wrong-47985.wav";
+                        AudioInputStream aui = AudioSystem.getAudioInputStream(new File(filepath).getAbsoluteFile());
+                        try {
+                            Clip clip = AudioSystem.getClip();
+                            clip.open(aui);
+                            clip.start();
+                        } catch (Exception e){ 
+                        }
+                    } catch (Exception e) { 
+                    }
                     JOptionPane.showMessageDialog(null, "Respuesta incorrecta");
                     sigPregunta.setVisible(true);
                     countPuntajeMalas++;
@@ -507,6 +524,17 @@ public class Preguntas extends javax.swing.JFrame {
             if (rs.next()) {
                 String respuesta = rs.getString("respuesta_correcta");
                 if (seleccionActual.equals(respuesta)) {
+                    try {
+                        String filepath = "C:\\mixkit-correct-answer-tone-2870.wav";
+                        AudioInputStream aui = AudioSystem.getAudioInputStream(new File(filepath).getAbsoluteFile());
+                        try {
+                            Clip clip = AudioSystem.getClip();
+                            clip.open(aui);
+                            clip.start();
+                        } catch (Exception e){ 
+                        }
+                    } catch (Exception e) { 
+                    }
                     timer.stop();
                     JOptionPane.showMessageDialog(null, "Respuesta correcta");
                     sigPregunta.setVisible(true);
@@ -518,6 +546,17 @@ public class Preguntas extends javax.swing.JFrame {
                     respuesta3.setVisible(false);
                     respuesta4.setVisible(false);
                 } else {
+                    try {
+                        String filepath = "C:\\wrong-47985.wav";
+                        AudioInputStream aui = AudioSystem.getAudioInputStream(new File(filepath).getAbsoluteFile());
+                        try {
+                            Clip clip = AudioSystem.getClip();
+                            clip.open(aui);
+                            clip.start();
+                        } catch (Exception e){ 
+                        }
+                    } catch (Exception e) { 
+                    }
                     JOptionPane.showMessageDialog(null, "Respuesta incorrecta");
                     sigPregunta.setVisible(true);
                     countPuntajeMalas++;
@@ -556,6 +595,17 @@ public class Preguntas extends javax.swing.JFrame {
             if (rs.next()) {
                 String respuesta = rs.getString("respuesta_correcta");
                 if (seleccionActual.equals(respuesta)) {
+                    try {
+                        String filepath = "C:\\mixkit-correct-answer-tone-2870.wav";
+                        AudioInputStream aui = AudioSystem.getAudioInputStream(new File(filepath).getAbsoluteFile());
+                        try {
+                            Clip clip = AudioSystem.getClip();
+                            clip.open(aui);
+                            clip.start();
+                        } catch (Exception e){ 
+                        }
+                    } catch (Exception e) { 
+                    }
                     timer.stop();
                     JOptionPane.showMessageDialog(null, "Respuesta correcta");
                     sigPregunta.setVisible(true);
@@ -567,6 +617,17 @@ public class Preguntas extends javax.swing.JFrame {
                     respuesta3.setVisible(false);
                     respuesta4.setVisible(false);
                 } else {
+                    try {
+                        String filepath = "C:\\wrong-47985.wav";
+                        AudioInputStream aui = AudioSystem.getAudioInputStream(new File(filepath).getAbsoluteFile());
+                        try {
+                            Clip clip = AudioSystem.getClip();
+                            clip.open(aui);
+                            clip.start();
+                        } catch (Exception e){ 
+                        }
+                    } catch (Exception e) { 
+                    }
                     JOptionPane.showMessageDialog(null, "Respuesta incorrecta");
                     sigPregunta.setVisible(true);
                     countPuntajeMalas++;
@@ -605,6 +666,17 @@ public class Preguntas extends javax.swing.JFrame {
             if (rs.next()) {
                 String respuesta = rs.getString("respuesta_correcta");
                 if (seleccionActual.equals(respuesta)) {
+                    try {
+                        String filepath = "C:\\mixkit-correct-answer-tone-2870.wav";
+                        AudioInputStream aui = AudioSystem.getAudioInputStream(new File(filepath).getAbsoluteFile());
+                        try {
+                            Clip clip = AudioSystem.getClip();
+                            clip.open(aui);
+                            clip.start();
+                        } catch (Exception e){ 
+                        }
+                    } catch (Exception e) { 
+                    }
                     timer.stop();
                     JOptionPane.showMessageDialog(null, "Respuesta correcta");
                     sigPregunta.setVisible(true);
@@ -616,6 +688,17 @@ public class Preguntas extends javax.swing.JFrame {
                     respuesta3.setVisible(false);
                     respuesta4.setVisible(false);
                 } else {
+                    try {
+                        String filepath = "C:\\wrong-47985.wav";
+                        AudioInputStream aui = AudioSystem.getAudioInputStream(new File(filepath).getAbsoluteFile());
+                        try {
+                            Clip clip = AudioSystem.getClip();
+                            clip.open(aui);
+                            clip.start();
+                        } catch (Exception e){ 
+                        }
+                    } catch (Exception e) { 
+                    }
                     JOptionPane.showMessageDialog(null, "Respuesta incorrecta");
                     sigPregunta.setVisible(true);
                     countPuntajeMalas++;
@@ -657,9 +740,10 @@ public class Preguntas extends javax.swing.JFrame {
             if (rs.next()) {
                 String texto_pregunta = rs.getString("texto_pregunta");
                 txt_pregunta.setText(texto_pregunta);
-            }
+            } //TODO: remake this to avoid repeated questions
 
             conn.close();
+            
             sigPregunta.setVisible(false);
             respuesta1.setVisible(true);
             respuesta2.setVisible(true);
